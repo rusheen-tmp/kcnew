@@ -1,0 +1,95 @@
+/* General */
+*{box-sizing:border-box;}
+body{margin:0;font-family:Georgia,serif;background:#000;color:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+/* Loading Screen */
+.loading-screen{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;z-index:100;}
+.loading-content{text-align:center;}
+.loading-spinner{width:40px;height:40px;border:3px solid #333;border-top:3px solid #d4af37;border-radius:50%;animation:spin 1s linear infinite;margin:20px auto;}
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+/* Error Boundary */
+.error-boundary{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:99;}
+.error-content{background:#111;border:1px solid #ff6b6b;padding:30px;text-align:center;max-width:400px;}
+.error-content button{padding:10px 20px;background:#ff6b6b;border:none;color:#fff;cursor:pointer;border-radius:4px;margin-top:15px;}
+.error-content button:hover{background:#ff5252;}
+/* Background */
+#scene{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;}
+#bg{width:100%;height:100%;object-fit:cover;filter:brightness(0.85);}
+/* Timer & Exit */
+#timer{position:fixed;top:15px;right:22px;font-family:"Courier New",monospace;font-size:1.4rem;color:#fff;z-index:10;line-height:1;}
+#exitBtn{position:fixed;top:15px;left:22px;padding:6px 14px;font-size:1rem;background:transparent;border:1px solid #d4af37;color:#d4af37;cursor:pointer;z-index:10;transition:filter .3s;}
+#exitBtn:hover{filter:drop-shadow(0 0 6px #d4af37);}
+#exitBtn:focus{outline:2px solid #d4af37;outline-offset:2px;}
+/* Content */
+#content{position:relative;z-index:5;text-align:center;width:100%;}
+.gold{color:#d4af37;}
+h1{margin:0;font-size:3.5rem;letter-spacing:2px;}
+.tagline{font-size:1.2rem;margin:0 0 40px;}
+/* Chatbox */
+#chatbox{width:70%;max-width:700px;margin:0 auto;background:rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:20px;height:260px;display:flex;flex-direction:column;transition:background 0.5s ease;}
+#chatbox.large{height:420px;}
+#chatbox.brighten{background:rgba(0,0,0,.6);}
+#chatbox.typing{border-color:rgba(212,175,55,.5);box-shadow:0 0 10px rgba(212,175,55,.3);}
+#messages{flex:1;overflow-y:auto;font-size:1rem;text-align:left;}
+#userInput{margin-top:10px;padding:10px;background:#111;border:1px solid #444;color:#fff;border-radius:4px;transition:border-color 0.3s;}
+#userInput:focus{border-color:#d4af37;outline:none;box-shadow:0 0 5px rgba(212,175,55,.3);}
+#userInput:disabled{opacity:0.6;cursor:not-allowed;}
+.nameClerk{color:#ffd54f;}
+.nameYou{color:#ffffff;}
+/* Key & Enter on landing */
+#keySection{margin-top:30px;}
+#keyButton{font-size:3rem;color:#d4af37;filter:drop-shadow(0 0 6px #d4af37);cursor:pointer;display:none;transition:all 0.3s;border-radius:50%;padding:10px;}
+#keyButton:hover{transform:scale(1.1);filter:drop-shadow(0 0 12px #d4af37);}
+#keyButton:focus{outline:2px solid #d4af37;outline-offset:5px;}
+#keyButton:active{transform:scale(0.95);}
+#enterBtn{display:block;margin:10px auto 0;padding:10px 24px;font-size:1.1rem;border:1px solid #666;background:rgba(0,0,0,.4);color:#666;border-radius:4px;cursor:not-allowed;transition:all .35s;}
+#enterBtn.active{border-color:#d4af37;background:rgba(212,175,55,.15);color:#fff;cursor:pointer;text-shadow:0 0 6px #fff;}
+/* Modals */
+.hidden{display:none;}
+.modalOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:20;}
+.modalBox{background:#111;border:1px solid #d4af37;padding:20px 30px;max-width:350px;text-align:center;}
+.modalBox h3{margin-top:0;}
+.modalBox button{padding:8px 18px;margin:0 10px;border:1px solid #fff;background:transparent;color:#fff;cursor:pointer;transition:background .3s,color .3s;}
+.modalBox button:hover{background:#d4af37;color:#000;}
+.modalBox button:focus{outline:2px solid #d4af37;outline-offset:2px;}
+/* Win modal */
+#winModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:25;}
+.modalContent{background:#111;border:1px solid #d4af37;border-radius:6px;padding:30px;text-align:center;max-width:400px;position:relative;}
+.modalContent .closeBtn{position:absolute;top:10px;right:15px;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
+.modalContent .closeBtn:hover{color:#d4af37;}
+.modalContent .closeBtn:focus{outline:2px solid #d4af37;outline-offset:2px;}
+.shareBtn{display:block;margin:20px auto 0;padding:10px 20px;background:transparent;border:2px solid #fff;color:#fff;cursor:pointer;border-radius:4px;transition:all 0.3s;}
+.shareBtn:hover{background:#fff;color:#000;}
+.shareBtn:active{transform:scale(0.95);}
+.shareBtn:focus{outline:2px solid #fff;outline-offset:2px;}
+.shareBtn.copied{background:#d4af37;border-color:#d4af37;color:#000;}
+/* Record status indicators */
+.status-escalated{color:#ffd54f;}
+.status-redacted{color:#ff6b6b;}
+.status-pending{color:#4fc3f7;}
+/* Visual feedback animations */
+@keyframes pulse{0%{opacity:1;}50%{opacity:0.7;}100%{opacity:1;}}
+.pulse{animation:pulse 1s ease-in-out;}
+@keyframes glow{0%{box-shadow:0 0 5px rgba(212,175,55,.3);}50%{box-shadow:0 0 15px rgba(212,175,55,.6);}100%{box-shadow:0 0 5px rgba(212,175,55,.3);}}
+.glow{animation:glow 2s ease-in-out infinite;}
+/* Accessibility improvements */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+/* Focus indicators */
+*:focus{outline:2px solid #d4af37;outline-offset:2px;}
+/* Responsive */
+@media(max-width:600px){
+ h1{font-size:2.3rem;}
+ #chatbox,#chatbox.large{width:90%;}
+ #timer{font-size:1.1rem;}
+ .loading-content h2{font-size:1.5rem;}
+}
+/* High contrast mode support */
+@media(prefers-contrast:high){
+ .gold{color:#ffff00;}
+ #keyButton{filter:drop-shadow(0 0 8px #ffff00);}
+}
+/* Reduced motion support */
+@media(prefers-reduced-motion:reduce){
+ .loading-spinner{animation:none;}
+ .pulse{animation:none;}
+ .glow{animation:none;}
+}

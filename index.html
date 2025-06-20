@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kafka's Castle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="background.png" as="image">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <h2 class="gold">Kafka's Castle</h2>
+            <p>Loading the antechamber...</p>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Error Boundary -->
+    <div id="errorBoundary" class="error-boundary hidden">
+        <div class="error-content">
+            <h3>Something went wrong</h3>
+            <p>The castle's systems are experiencing difficulties.</p>
+            <button onclick="location.reload()">Try Again</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="hidden">
+        <div id="scene">
+            <img id="bg" src="background.png" alt="Castle background" onload="imageLoaded()" onerror="imageError()">
+        </div>
+        <div id="content">
+            <h2 class="white-text">Welcome to</h2>
+            <h1><span class="gold">Kafka's Castle</span></h1>
+            <h2 class="tagline">A surreal chat‑based puzzle experience</h2>
+            <div id="chatbox">
+                <div id="messages"></div>
+                <input id="userInput" placeholder="Type your reply…" autocomplete="off" aria-label="Type your message">
+            </div>
+            <div id="keySection">
+                <div id="keyButton" role="button" tabindex="0" aria-label="Click to enter the castle">🔑</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics -->
+    <script>
+        // Simple analytics
+        window.gameAnalytics = {
+            startTime: Date.now(),
+            attempts: 0,
+            hintsUsed: 0,
+            recordsViewed: 0,
+            completionTime: null,
+            trackEvent: function(event, data) {
+                console.log('Game Event:', event, data);
+                // Could send to analytics service here
+            }
+        };
+    </script>
+
+    <script src="script.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
